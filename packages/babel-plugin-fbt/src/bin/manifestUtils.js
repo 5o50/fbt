@@ -36,6 +36,11 @@ function generateManifest(
     // Ensure babel resolves paths relative to our package directory so the
     // plugins can always be resolved to this node_modules directory.
     cwd: path.resolve(__dirname, '../'),
+    // copied default extensions and added '.ts', '.tsx'
+    extensions: ['.js', '.json', '.node', '.jsx', '.es6', '.es', '.mjs', '.cjs', '.ts', '.tsx'],
+    // without this babel 7 won't compile ts outside its current directory
+    // see https://github.com/babel/babel/issues/8321#issuecomment-464932499
+    ignore: [/node_modules/],
     plugins: [
       '@babel/plugin-syntax-object-rest-spread',
       '@babel/plugin-transform-flow-strip-types',
